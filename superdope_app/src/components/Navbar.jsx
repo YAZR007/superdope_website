@@ -30,7 +30,7 @@ export default function Navbar() {
           
           <div className="relative z-10 flex origin-center -translate-y-3 scale-150 justify-center">
             <Link to="/" aria-label="SUPER DOPE MAIN MENU" className="superdope-logo flex w-24 items-center justify-center px-2">
-              <img alt="SUPER DOPE LOGO" loading="lazy" width="200" height="144" decoding="async" className="w-[200px]" src="/assets/img/logo.png" />
+              <img alt="SUPER DOPE LOGO" loading="lazy" width="200" height="144" decoding="async" className="w-[200px]" src="https://raw.githubusercontent.com/YAZR007/superdope_website/main/RAINBOWLOGO-removebg-preview.png" />
             </Link>
           </div>
           

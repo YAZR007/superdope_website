@@ -5,7 +5,7 @@ export default function MenuPage() {
   return (
     <div className="relative flex flex-1 flex-col h-full w-full overflow-hidden">
       <div className="pointer-events-none absolute inset-0 z-0 bg-black rounded-3xl overflow-hidden">
-        <img alt="SUPER DOPE CLOUDS BACKGROUND" className="absolute inset-0 h-full w-full object-cover brightness-200 saturate-[3]" src="/assets/img/bg.png" />
+        <img alt="SUPER DOPE CLOUDS BACKGROUND" className="absolute inset-0 h-full w-full object-cover brightness-200 saturate-[3]" src="https://github.com/YAZR007/superdope_website/blob/main/backgroundshop.jpg?raw=true" />
         <div className="absolute inset-0 bg-blue-300 opacity-30"></div>
       </div>
       
@@ -18,7 +18,7 @@ export default function MenuPage() {
               </TransitionLink>
             </li>
             <li data-text="Shop" className="uppercase transition-transform duration-100 hover:scale-110 relative group w-full text-center">
-              <TransitionLink to="/menu#series" className="transition-all duration-300 block w-full py-2 sm:py-4">
+              <TransitionLink to="/shop" className="transition-all duration-300 block w-full py-2 sm:py-4">
                 <div className="menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitched="1">Shop</div>
               </TransitionLink>
             </li>

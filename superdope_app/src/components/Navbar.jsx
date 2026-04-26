@@ -1,17 +1,20 @@
 import { Link } from 'react-router-dom';
+import { useCart } from '../App';
 
 export default function Navbar() {
+  const { toggleCart } = useCart();
+
   return (
     <div className="dope-navbar-container flex h-[90px] w-full pb-[10px]">
       <nav className="dope-nav w-full">
         <div tabIndex="0" className="grid w-full grid-cols-3 items-center justify-center gap-2">
           
           <div className="relative z-20 flex justify-end">
-            <button className="group relative flex h-11 w-11 cursor-pointer items-center justify-center text-white">
+            <Link to="/shop" className="group relative flex h-11 w-11 cursor-pointer items-center justify-center text-white">
               <svg xmlns="http://www.w3.org/2000/svg" width="91" height="91" viewBox="0 0 91 91" fill="none" className="-mt-1 h-6 w-6 transition-all ease-in-out group-hover:scale-125">
                 <path fill="#fff" strokeWidth="2" stroke="black" strokeOpacity="0.7" d="M85.705 76.193v-9.519h-4.76v-4.76h-4.76v-4.76h-4.759v-4.78H57.145v4.78h-9.52v.018H33.33v-4.78H19.05v4.78h-4.76v4.76H9.53v4.759H4.77v9.52H0v14.291H47.639v-.018h42.836V76.193h-4.77ZM66.665 14.279V9.52h-4.76V4.759h-4.76V0h-9.52v.017h-14.31v4.76h-4.76v4.76h-4.759v4.76h-4.761v19.04h4.761v4.76h4.759v4.76h4.76v4.77h14.31v-.018h9.52v-4.77h4.76V38.08h4.76v-4.761h4.761v-19.04h-4.761Z"></path>
               </svg>
-            </button>
+            </Link>
             <button className="group relative flex h-11 w-11 items-center justify-center text-white">
               <svg width="100" height="100" viewBox="0 0 100 100" fill="none" className="h-6 w-6 transition-all ease-in-out group-hover:scale-125">
                 <g strokeWidth="2" stroke="black" strokeOpacity="0.7">
@@ -45,7 +48,7 @@ export default function Navbar() {
               </button>
             </div>
             <div>
-              <button aria-label="Open cart">
+              <button aria-label="Open cart" onClick={toggleCart}>
                 <div className="group relative flex items-center justify-center text-white">
                   <svg width="405" height="309" viewBox="0 0 405 309" fill="none" className="h-8 w-8 transition-all ease-in-out group-hover:scale-125">
                     <g strokeWidth="2" stroke="black" strokeOpacity="0.7">

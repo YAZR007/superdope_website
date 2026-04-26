@@ -3,13 +3,17 @@ import React, { createContext, useContext, useState, useEffect, useRef } from 'r
 import Navbar from './components/Navbar';
 import IndexPage from './pages/IndexPage';
 import MenuPage from './pages/MenuPage';
+import ShopPage from './pages/ShopPage';
+import Cart from './components/Cart';
 import { Howl } from 'howler';
 
 const TransitionContext = createContext(null);
 const SoundContext = createContext(null);
+const CartContext = createContext(null);
 
 export const useTransitionNavigate = () => useContext(TransitionContext);
 export const useSound = () => useContext(SoundContext);
+export const useCart = () => useContext(CartContext);
 
 // Sound setup
 const hoverSound = new Howl({ src: ['/47313572-ui-sounds-pack-5-2-359749.mp3'] });
@@ -41,7 +45,7 @@ export const TransitionLink = ({ to, children, className }) => {
   );
 };
 
-function AnimatedRoutes() {
+function AnimatedRoutes({ addToCart }) {
   const [isTransitioning, setIsTransitioning] = useState(false);
   const navigate = useNavigate();
 
@@ -59,6 +63,7 @@ function AnimatedRoutes() {
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="/menu" element={<MenuPage />} />
+          <Route path="/shop" element={<ShopPage addToCart={addToCart} />} /> 
           <Route path="*" element={<IndexPage />} />
         </Routes>
       </div>
@@ -68,6 +73,7 @@ function AnimatedRoutes() {
 
 function App() {
   const [soundEnabled, setSoundEnabled] = useState(true);
+  const [cart, setCart] = useState([]);
 
   useEffect(() => {
     if (soundEnabled) {
@@ -94,20 +100,48 @@ function App() {
     setSoundEnabled(!soundEnabled);
   };
 
+  const addToCart = (product, weight) => {
+    setCart(prevCart => {
+        const existingProduct = prevCart.find(item => item.id === product.id && item.weight === weight);
+        if (existingProduct) {
+            return prevCart.map(item => 
+                item.id === product.id && item.weight === weight 
+                ? { ...item, quantity: item.quantity + 1 } 
+                : item
+            );
+        } else {
+            return [...prevCart, { ...product, weight, quantity: 1 }];
+        }
+    });
+  };
+
+  const removeFromCart = (productId, weight) => {
+    setCart(prevCart => prevCart.filter(item => !(item.id === productId && item.weight === weight)));
+  };
+
+  const [isCartOpen, setIsCartOpen] = useState(false);
+
+  const toggleCart = () => {
+      setIsCartOpen(!isCartOpen);
+  }
+
   return (
     <SoundContext.Provider value={{ soundEnabled, toggleSound, playHoverSound, playClickSound }}>
-      <BrowserRouter>
-        <div id="root-render-node" className="bg-black text-white h-full w-full flex flex-col font-['Jersey_20']">
-          <div className="flex h-full w-full flex-col shadow-[0_0_10px_0_#000_inset]">
-            <div className="tv-wrapper relative z-20 mx-4 mt-4 flex select-none flex-col overflow-hidden rounded-3xl bg-black flex-1 min-h-0">
-              <main id="mainContainer" className="pointer-events-auto relative flex h-full w-full flex-col overflow-hidden">
-                <AnimatedRoutes />
-              </main>
-            </div>
-            <Navbar />
-          </div>
-        </div>
-      </BrowserRouter>
+        <CartContext.Provider value={{ cart, addToCart, removeFromCart, isCartOpen, toggleCart }}>
+            <BrowserRouter>
+                <div id="root-render-node" className="bg-black text-white h-full w-full flex flex-col font-['Jersey_20']">
+                <div className="flex h-full w-full flex-col shadow-[0_0_10px_0_#000_inset]">
+                    <div className="tv-wrapper relative z-20 mx-4 mt-4 flex select-none flex-col overflow-hidden rounded-3xl bg-black flex-1 min-h-0">
+                    <main id="mainContainer" className="pointer-events-auto relative flex h-full w-full flex-col overflow-hidden">
+                        <AnimatedRoutes addToCart={addToCart} />
+                    </main>
+                    </div>
+                    <Navbar />
+                    <Cart />
+                </div>
+                </div>
+            </BrowserRouter>
+        </CartContext.Provider>
     </SoundContext.Provider>
   );
 }

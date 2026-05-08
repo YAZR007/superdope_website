@@ -7,6 +7,8 @@ const products = [
   {
     id: 1,
     name: 'Cosmic Kush',
+    category: 'Flower',
+    price: 21,
     type: 'Indica-dominant Hybrid',
     thc: '25%',
     cbd: '2%',
@@ -17,6 +19,8 @@ const products = [
   {
     id: 2,
     name: 'Pixel Haze',
+    category: 'Flower',
+    price: 25,
     type: 'Sativa',
     thc: '22%',
     cbd: '< 1%',
@@ -27,6 +31,8 @@ const products = [
   {
     id: 3,
     name: "Ronin's Reserve",
+    category: 'Flower',
+    price: 28,
     type: 'Hybrid',
     thc: '20%',
     cbd: '5%',
@@ -37,6 +43,8 @@ const products = [
   {
     id: 4,
     name: 'Samurai Spirit',
+    category: 'Prerolls',
+    price: 18,
     type: 'Sativa-dominant Hybrid',
     thc: '28%',
     cbd: '1%',
@@ -47,6 +55,8 @@ const products = [
   {
     id: 5,
     name: "Shogun's Secret",
+    category: 'Vapes',
+    price: 35,
     type: 'Indica',
     thc: '30%',
     cbd: '3%',
@@ -89,23 +99,16 @@ const Particles = () => {
 }
 
 const ShopPage = () => {
-    const [currentIndex, setCurrentIndex] = useState(0);
     const [selectedProduct, setSelectedProduct] = useState(null);
     const [selectedWeight, setSelectedWeight] = useState('3.5g');
     const { addToCart } = useCart();
-    const isDesktop = useMediaQuery('(min-width: 768px)');
+    const [activeCategory, setActiveCategory] = useState('All');
+    const [searchTerm, setSearchTerm] = useState('');
+    const [isFilterVisible, setIsFilterVisible] = useState(false);
+    const isMobile = !useMediaQuery('(min-width: 769px)');
 
-    const getSafeIndex = (index) => ((index % products.length) + products.length) % products.length;
-    const currentSafeIndex = getSafeIndex(currentIndex);
-    const currentProductData = products[currentSafeIndex];
-
-    const openProduct = (product) => {
-        setSelectedProduct(product);
-    };
-
-    const closeProduct = () => {
-        setSelectedProduct(null);
-    };
+    const openProduct = (product) => setSelectedProduct(product);
+    const closeProduct = () => setSelectedProduct(null);
     
     const handleAddToCart = () => {
         if (selectedProduct) {
@@ -114,12 +117,16 @@ const ShopPage = () => {
         }
     };
 
+    const filteredProducts = products
+        .filter(p => activeCategory === 'All' || p.category === activeCategory)
+        .filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
+
     if (selectedProduct) {
         return (
             <div className="h-full w-full flex items-center justify-center relative overflow-hidden" style={{ backgroundImage: "url('https://raw.githubusercontent.com/YAZR007/superdope_website/main/backgroundshop.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <Particles />
                 <div className="w-full h-full bg-black bg-opacity-80 backdrop-blur-lg p-4 flex items-center justify-center absolute">
-                    <div className="bg-gradient-to-br from-purple-900 to-black border-2 border-purple-500 rounded-2xl shadow-2xl shadow-purple-500/50 w-full max-w-5xl flex flex-col md:flex-row gap-6 items-center p-6 h-full md:h-auto overflow-y-auto md:overflow-y-visible">
+                    <div className="bg-gradient-to-br from-purple-900 to-black border-2 border-[#fd63a1] rounded-2xl shadow-2xl shadow-[#fd63a1]/50 w-full max-w-5xl flex flex-col md:flex-row gap-6 items-center p-6 h-full md:h-auto overflow-y-auto md:overflow-y-visible">
                         <div className="md:w-1/2 w-full flex-shrink-0">
                             <img src={selectedProduct.imageUrl} alt={selectedProduct.name} className="w-full h-auto object-contain rounded-lg" />
                         </div>
@@ -148,101 +155,95 @@ const ShopPage = () => {
                                         </button>
                                     ))}
                                 </div>
+                                <div className="text-3xl md:text-4xl font-bold alt-font my-4">
+                                    £{selectedProduct.price}
+                                </div>
                                 <button onClick={handleAddToCart} className="w-full bg-green-500 hover:bg-green-600 text-white font-bold py-3 px-6 rounded-lg text-xl md:text-2xl transition-transform duration-300 hover:scale-105">
                                     Add to Cart
                                 </button>
                             </div>
                         </div>
                     </div>
-                    <button onClick={closeProduct} className="text-white text-4xl md:text-5xl absolute top-4 right-4 hover:text-purple-400 transition-colors z-20">&times;</button>
+                    <button onClick={closeProduct} className="text-white text-4xl md:text-5xl absolute top-4 right-4 hover:text-[#fd63a1] transition-colors z-20">&times;</button>
                 </div>
             </div>
         );
     }
 
+    const categories = ['All', 'Flower', 'Prerolls', 'Concentrates', 'Vapes', 'Accessories'];
+
+    const sidebarContent = (
+      <>
+        <div className='sidebar-section'>
+            <h2 className='sidebar-title alt-font'>CATEGORIES</h2>
+            <ul className='category-list'>
+                {categories.map(cat => (
+                    <li key={cat} >
+                        <button onClick={() => setActiveCategory(cat)} className={`category-button gameplay ${activeCategory === cat ? 'active' : ''}`}>
+                            {cat}
+                            {['Prerolls', 'Concentrates', 'Vapes', 'Accessories'].includes(cat) && <span className='soon-tag'>SOON</span>}
+                        </button>
+                    </li>
+                ))}
+            </ul>
+        </div>
+        <div className='sidebar-section'>
+            <h2 className='sidebar-title alt-font'>SORT BY</h2>
+            <ul className='sort-list'>
+                <li><button className='sort-button gameplay'>CBD: HIGH TO LOW</button></li>
+                <li><button className='sort-button gameplay'>PRICE: LOW TO HIGH</button></li>
+            </ul>
+        </div>
+      </>
+    );
+
     return (
-        <div className="h-full w-full p-4 flex flex-col items-center justify-between relative overflow-hidden" style={{ backgroundImage: "url('https://raw.githubusercontent.com/YAZR007/superdope_website/main/backgroundshop.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
+        <div className="shop-page-container" style={{ backgroundImage: "url('https://raw.githubusercontent.com/YAZR007/superdope_website/main/backgroundshop.jpg')" }}>
             <Particles />
-            
-            <div className="w-full text-center pt-8">
-                <h2 className="text-3xl md:text-4xl text-white font-bold alt-font glow-white px-4">{currentProductData.name} (3.5g)</h2>
+            <div className="shop-sidebar">
+                <div className='sidebar-section'>
+                    <h1 className='dispensary-title alt-font'>THE DISPENSARY</h1>
+                    <p className='dispensary-subtitle gameplay'>CURATED ARTISANAL CBD HARVEST</p>
+                </div>
+                {isMobile && (
+                    <button className="mobile-filter-toggle gameplay" onClick={() => setIsFilterVisible(!isFilterVisible)}>
+                        {isFilterVisible ? 'HIDE FILTERS' : 'FILTERS & SORT'}
+                    </button>
+                )}
+                {(!isMobile || isFilterVisible) && sidebarContent}
             </div>
 
-            <div className="w-full flex-grow flex items-center justify-center relative overflow-hidden">
-                {products.map((product, index) => {
-                    const offset = index - currentSafeIndex;
-                    let adjustedOffset = offset;
-                    if (Math.abs(offset) > products.length / 2) {
-                        adjustedOffset = offset > 0 ? offset - products.length : offset + products.length;
-                    }
-
-                    const isCurrent = adjustedOffset === 0;
-
-                    const getTransform = () => {
-                        let x = adjustedOffset * (isDesktop ? 80 : 70);
-                        let scale = isDesktop ? 0.6 : 0.5;
-                        let rotate = 0;
-
-                        if (isCurrent) {
-                            scale = 1;
-                            x = 0;
-                        } else if (adjustedOffset > 0) {
-                            rotate = 15;
-                        } else {
-                            rotate = -15;
-                        }
-
-                        return `translateX(${x}%) scale(${scale}) rotate(${rotate}deg)`;
-                    };
-                    
-                    const getOpacity = () => {
-                        if (Math.abs(adjustedOffset) > 1) return 0;
-                        if (isCurrent) return 1;
-                        return 0.8;
-                    };
-
-                    const opacity = getOpacity();
-                    const getZIndex = () => (products.length - Math.abs(adjustedOffset));
-
-                    return (
-                        <div
-                            key={product.id}
-                            className="cursor-pointer absolute transition-all duration-500 ease-in-out"
-                            style={{
-                                top: '50%',
-                                left: '50%',
-                                transform: `translate(-50%, -50%) ${getTransform()}`,
-                                opacity: opacity,
-                                zIndex: getZIndex(),
-                                pointerEvents: opacity === 0 ? 'none' : 'auto',
-                            }}
-                            onClick={() => {
-                                if (isCurrent) {
-                                    openProduct(product);
-                                } else if (Math.abs(adjustedOffset) === 1) {
-                                   setCurrentIndex(currentIndex + adjustedOffset);
-                                }
-                            }}
-                        >
-                            <img
-                                src={product.imageUrl}
-                                alt={product.name}
-                                className="w-auto object-contain"
-                                style={{
-                                    maxHeight: isDesktop ? '60vh' : '50vh',
-                                }}
-                            />
+            <div className="shop-main">
+                <div className="search-bar-container">
+                    <input 
+                        type="text"
+                        placeholder="Search strains..."
+                        className="search-input gameplay"
+                        value={searchTerm}
+                        onChange={(e) => setSearchTerm(e.target.value)}
+                    />
+                </div>
+                <div className="product-grid">
+                    {filteredProducts.map(product => (
+                        <div key={product.id} className="product-card" onClick={() => openProduct(product)}>
+                            <div className="product-image-container">
+                                <img src={product.imageUrl} alt={product.name} className="product-image" />
+                            </div>
+                            <div className="product-info">
+                                <p className="product-category gameplay">{product.category}</p>
+                                <h3 className="product-name alt-font">{product.name.toUpperCase()}</h3>
+                                <p className="product-description">{product.description}</p>
+                                <p className="product-type">{product.type}</p>
+                                <div className="product-stats">
+                                    <span>THC: {product.thc}</span>
+                                    <span>CBD: {product.cbd}</span>
+                                </div>
+                                <p className="product-price gameplay">£{product.price}</p>
+                                <button className="view-drop-button alt-font">ADD TO CART</button>
+                            </div>
                         </div>
-                    );
-                })}
-            </div>
-
-            <div className="w-full flex flex-col items-center pb-8 z-20">
-                <button onClick={() => openProduct(currentProductData)} className="mb-4 bg-black bg-opacity-70 border border-white text-white font-bold py-3 px-8 md:px-12 rounded-lg text-lg md:text-xl tracking-widest hover:bg-white hover:text-black transition-all duration-300">
-                    ADD TO CART
-                </button>
-                <div className="text-white text-lg alt-font">CHARACTER SELECT</div>
-                <div className="text-white text-sm mt-1">© 2026 SUPER DOPE</div>
+                    ))}
+                </div>
             </div>
         </div>
     );

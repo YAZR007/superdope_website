@@ -5,33 +5,30 @@ import '../styles/Cart.css';
 const Cart = () => {
   const { cart, removeFromCart, isCartOpen, toggleCart } = useCart();
 
-  if (!isCartOpen) return null;
-
   const getTotalPrice = () => {
-    // For now, let's just count the number of items
-    return cart.reduce((total, item) => total + item.quantity, 0);
+    return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   }
 
   return (
-    <div className="cart-overlay">
-      <div className="cart-container">
+    <div className={`cart-container ${isCartOpen ? 'open' : ''}`}>
         <div className="cart-header">
-          <h2 className="text-2xl font-bold alt-font glow-white">Your Cart</h2>
+          <h2 className="sidebar-title alt-font">Your Cart</h2>
           <button onClick={toggleCart} className="text-white text-2xl">&times;</button>
         </div>
         <div className="cart-items">
           {cart.length === 0 ? (
-            <p className="text-center japanese">Your cart is empty.</p>
+            <p className="text-center gameplay">Your cart is empty.</p>
           ) : (
             cart.map(item => (
-              <div key={`${item.id}-${item.weight}`} className="cart-item">
-                <img src={item.imageUrl} alt={item.name} className="cart-item-image" />
-                <div className="cart-item-details">
-                  <h3 className="text-lg font-bold alt-font glow-white">{item.name}</h3>
-                  <p className="text-sm gameplay">{item.weight}</p>
-                  <p className="text-sm gameplay">Quantity: {item.quantity}</p>
+              <div key={`${item.id}-${item.weight}`} className="cart-item product-card">
+                <img src={item.imageUrl} alt={item.name} className="cart-item-image product-image" />
+                <div className="cart-item-details product-info">
+                  <h3 className="product-name gameplay">{item.name}</h3>
+                  <p className="gameplay">{item.weight}</p>
+                  <p className="gameplay">Quantity: {item.quantity}</p>
+                  <p className="product-price gameplay">£{item.price * item.quantity}</p>
                 </div>
-                <button onClick={() => removeFromCart(item.id, item.weight)} className="remove-item-button">
+                <button onClick={() => removeFromCart(item.id, item.weight)} className="remove-item-button view-drop-button alt-font">
                   Remove
                 </button>
               </div>
@@ -39,11 +36,10 @@ const Cart = () => {
           )}
         </div>
         <div className="cart-footer">
-          <h3 className="text-xl font-bold alt-font glow-white">Total: {getTotalPrice()} items</h3>
-          <button className="checkout-button">Checkout</button>
+          <h3 className="sidebar-title alt-font">Total: £{getTotalPrice()}</h3>
+          <button className="checkout-button view-drop-button alt-font">Checkout</button>
         </div>
       </div>
-    </div>
   );
 };
 

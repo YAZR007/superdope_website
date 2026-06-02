@@ -1,11 +1,13 @@
 import { BrowserRouter, Routes, Route, useNavigate } from 'react-router-dom';
-import React, { createContext, useContext, useState, useEffect, useRef } from 'react';
+import React, { createContext, useContext, useState, useEffect } from 'react';
 import Navbar from './components/Navbar';
 import IndexPage from './pages/IndexPage';
 import MenuPage from './pages/MenuPage';
 import ShopPage from './pages/ShopPage';
 import Cart from './components/Cart';
 import { Howl } from 'howler';
+import MediaComingSoon from './pages/MediaComingSoon';
+import ContactPage from './pages/ContactPage';
 
 const TransitionContext = createContext(null);
 const SoundContext = createContext(null);
@@ -63,7 +65,9 @@ function AnimatedRoutes({ addToCart }) {
         <Routes>
           <Route path="/" element={<IndexPage />} />
           <Route path="/menu" element={<MenuPage />} />
-          <Route path="/shop" element={<ShopPage addToCart={addToCart} />} /> 
+          <Route path="/shop" element={<ShopPage addToCart={addToCart} />} />
+          <Route path="/media" element={<MediaComingSoon />} />
+          <Route path="/contact" element={<ContactPage />} />
           <Route path="*" element={<IndexPage />} />
         </Routes>
       </div>

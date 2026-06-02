@@ -1,51 +1,49 @@
-.cart-overlay {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.75);
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  z-index: 100;
-}
+@import url('https://fonts.googleapis.com/css2?family=Jersey+20&family=Press+Start+2P&display=swap');
 
 .cart-container {
-  width: 90%;
-  max-width: 500px;
-  background: #1a1a1a;
-  border: 2px solid #8a2be2;
-  border-radius: 15px;
-  padding: 20px;
-  color: #fff;
-  box-shadow: 0 0 20px #8a2be2, 0 0 30px #ff00ff;
+  position: fixed;
+  top: 0;
+  right: -400px;
+  width: 400px;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.9);
+  border-left: 4px solid #fd63a1;
+  transition: right 0.3s ease-in-out;
+  z-index: 1000;
+  display: flex;
+  flex-direction: column;
+  font-family: 'Press Start 2P', cursive;
+  color: white;
+}
+
+.cart-container.open {
+  right: 0;
 }
 
 .cart-header {
+  padding: 20px;
+  border-bottom: 2px solid #fd63a1;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 20px;
 }
 
 .cart-items {
-  max-height: 300px;
+  flex-grow: 1;
   overflow-y: auto;
+  padding: 20px;
 }
 
 .cart-item {
   display: flex;
-  align-items: center;
-  margin-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 .cart-item-image {
-  width: 80px;
-  height: 80px;
+  width: 100px;
+  height: 100px;
   object-fit: cover;
-  border-radius: 10px;
-  margin-right: 15px;
+  margin-right: 20px;
 }
 
 .cart-item-details {
@@ -53,36 +51,98 @@
 }
 
 .remove-item-button {
-  background: #ff0000;
-  color: #fff;
+  background: none;
   border: none;
-  padding: 5px 10px;
-  border-radius: 5px;
+  color: #ff69b4;
+  font-size: 1.5rem;
   cursor: pointer;
-  transition: background 0.3s;
-}
-
-.remove-item-button:hover {
-  background: #cc0000;
 }
 
 .cart-footer {
-  margin-top: 20px;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
+  padding: 20px;
+  border-top: 2px solid #fd63a1;
 }
 
 .checkout-button {
-  background: #8a2be2;
-  color: #fff;
+  width: 100%;
+  padding: 15px;
+  background-color: #fd63a1;
+  color: white;
   border: none;
-  padding: 10px 20px;
-  border-radius: 5px;
+  font-size: 1.2rem;
   cursor: pointer;
-  transition: background 0.3s;
+  transition: background-color 0.2s;
 }
 
 .checkout-button:hover {
-  background: #7a1fb2;
+  background-color: #fdfd96;
+  color: #fd63a1;
+}
+
+/* Copied from ShopPage.css */
+.sidebar-title {
+    font-family: 'Jersey 20', sans-serif;
+    font-size: 1.8rem;
+    color: #fdfd96;
+    margin-bottom: 15px;
+    border-bottom: 2px solid #fd63a1;
+    padding-bottom: 5px;
+}
+
+.product-card {
+  background: rgba(0,0,0,0.8);
+  border: 2px solid #fd63a1;
+  padding: 15px;
+  color: white;
+  display: flex;
+  flex-direction: column;
+}
+
+.product-image {
+  width: 100px;
+  height: 100px;
+  object-fit: cover;
+}
+
+.product-info {
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-family: 'Press Start 2P', cursive;
+}
+
+.product-name {
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1.5rem;
+  color: #fdfd96;
+  margin-bottom: 10px;
+  flex-grow: 1;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  color: #fdfd96;
+  margin-bottom: 15px;
+  text-align: right;
+}
+
+.view-drop-button {
+  background-color: #fd63a1;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+}
+
+.view-drop-button:hover {
+  background-color: #fdfd96;
+  color: #fd63a1;
+}
+
+.gameplay{
+    font-family: 'Press Start 2P', cursive;
 }

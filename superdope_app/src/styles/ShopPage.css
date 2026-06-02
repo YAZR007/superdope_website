@@ -1,349 +1,270 @@
+@import url('https://fonts.googleapis.com/css2?family=Jersey+20&family=Press+Start+2P&display=swap');
 
 .shop-page-container {
-    display: flex;
-    height: 100vh;
-    width: 100%;
-    background-size: cover;
-    background-position: center;
-    color: white;
-    font-family: 'Arial', sans-serif; 
-}
-
-.particles-background {
-    position: absolute;
-    top: 0;
-    left: 0;
-    width: 100%;
-    height: 100%;
-    overflow: hidden;
-    z-index: -1;
-}
-
-.particle {
-    position: absolute;
-    width: 3px;
-    height: 3px;
-    border-radius: 50%;
-    animation: move-particle linear infinite;
-}
-
-.particle.white {
-    background-color: #fff;
-    box-shadow: 0 0 6px rgba(255, 255, 255, 0.8), 0 0 12px rgba(255, 0, 255, 0.5);
-}
-
-@keyframes move-particle {
-    0% {
-        transform: translateY(0);
-        opacity: 1;
-    }
-    100% {
-        transform: translateY(-100vh) translateX(calc(var(--x) * 1px));
-        opacity: 0;
-    }
+  display: flex;
+  height: 100%;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .shop-sidebar {
-    width: 25%;
-    max-width: 300px;
-    background-color: transparent;
-    padding: 2rem;
-    overflow-y: auto;
-    z-index: 2;
+  width: 280px;
+  background-color: rgba(0,0,0,0.8);
+  padding: 20px;
+  color: white;
+  border-right: 4px solid #fd63a1;
+  overflow-y: auto;
 }
 
 .sidebar-section {
-    margin-bottom: 3rem;
+  margin-bottom: 30px;
 }
 
 .dispensary-title {
-    font-size: 2.5rem;
-    font-weight: bold;
-    letter-spacing: 2px;
-    margin-bottom: 0.5rem;
-    color: #f3f3f3;
-    text-shadow: 2px 2px 4px #000;
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 2.5rem;
+  color: #fdfd96;
+  text-shadow: 2px 2px #fd63a1;
+  margin-bottom: 5px;
 }
 
 .dispensary-subtitle {
-    font-size: 0.9rem;
-    color: #a7a7a7;
-    letter-spacing: 1px;
+  font-size: 0.8rem;
+  color: #c1c1c1;
+  margin-bottom: 20px;
 }
 
 .sidebar-title {
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 1.5rem;
-    color: #f3f3f3;
-    padding-bottom: 0.5rem;
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1.8rem;
+  color: #fdfd96;
+  margin-bottom: 15px;
+  border-bottom: 2px solid #fd63a1;
+  padding-bottom: 5px;
 }
 
 .category-list, .sort-list {
-    list-style: none;
-    padding: 0;
-    margin: 0;
+  list-style-type: none;
+  padding: 0;
 }
 
 .category-button, .sort-button {
-    background: none;
-    border: none;
-    color: #a7a7a7;
-    font-size: 1rem;
-    text-align: left;
-    padding: 0.75rem 0;
-    cursor: pointer;
-    width: 100%;
-    transition: color 0.3s ease;
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+  background: none;
+  border: none;
+  color: white;
+  text-align: left;
+  width: 100%;
+  padding: 10px 5px;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
 .category-button:hover, .sort-button:hover {
-    color: #fff;
+  color: #fdfd96;
+  background-color: rgba(253, 99, 161, 0.2);
 }
 
 .category-button.active {
-    color: #fff;
-    background-color: #8a2be2;
-    padding-left: 1rem;
-    border-radius: 5px;
+  color: #fdfd96;
+  font-weight: bold;
 }
 
 .soon-tag {
-    font-size: 0.7rem;
-    color: #888;
-    margin-left: 1rem;
+  font-size: 0.7rem;
+  color: #999;
+  background-color: #333;
+  padding: 2px 5px;
+  border-radius: 5px;
 }
 
 .shop-main {
-    flex-grow: 1;
-    padding: 2rem;
-    overflow-y: auto;
-    z-index: 1;
+  flex-grow: 1;
+  padding: 20px;
+  overflow-y: auto;
+  background: rgba(0,0,0,0.7);
 }
 
 .search-bar-container {
-    display: flex;
-    justify-content: flex-end;
-    margin-bottom: 2rem;
+  margin-bottom: 20px;
 }
 
 .search-input {
-    background-color: rgba(0,0,0,0.7);
-    border: none;
-    color: white;
-    padding: 0.75rem 1.5rem;
-    width: 300px;
-    border-radius: 20px;
-    font-size: 1rem;
+  width: 100%;
+  padding: 15px;
+  background-color: rgba(255,255,255,0.1);
+  border: 2px solid #fd63a1;
+  border-radius: 0;
+  color: white;
+  font-size: 1rem;
 }
 
 .product-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-    gap: 2rem;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
 }
 
 .product-card {
-    background-color: #1a1a1a;
-    border: 2px solid #fd63a1;
-    border-radius: 10px;
-    cursor: pointer;
-    overflow: hidden;
-    transition: transform 0.3s ease, box-shadow 0.3s ease;
-    display: flex;
-    flex-direction: column;
+  background: rgba(0,0,0,0.8);
+  border: 2px solid #fd63a1;
+  padding: 15px;
+  color: white;
+  cursor: pointer;
+  transition: transform 0.2s, box-shadow 0.2s;
+  display: flex;
+  flex-direction: column;
 }
 
 .product-card:hover {
-    transform: translateY(-5px);
-    box-shadow: 0 10px 20px rgba(138, 43, 226, 0.4);
+  transform: translateY(-5px);
+  box-shadow: 0 5px 15px rgba(253, 99, 161, 0.5);
 }
 
 .product-image-container {
-    background-color: black;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    height: 250px;
+  width: 100%;
+  padding-top: 100%; /* 1:1 Aspect Ratio */
+  position: relative;
+  margin-bottom: 15px;
 }
 
 .product-image {
-    max-width: 100%;
-    max-height: 100%;
-    object-fit: cover;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
 }
 
 .product-info {
-    padding: 1.5rem;
-    text-align: center;
+  display: flex;
+  flex-direction: column;
+  flex-grow: 1;
+  font-family: 'Press Start 2P', cursive;
 }
 
 .product-category {
-    color: #a7a7a7;
-    font-size: 0.9rem;
-    margin-bottom: 0.5rem;
+  color: #c1c1c1;
+  font-size: 0.7rem;
+  margin-bottom: 5px;
 }
 
 .product-name {
-    color: #f3f3f3;
-    font-size: 1.5rem;
-    font-weight: bold;
-    margin-bottom: 0.5rem;
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1.5rem;
+  color: #fdfd96;
+  margin-bottom: 10px;
+  flex-grow: 1;
 }
 
-.product-price {
-    color: #a7a7a7;
-    font-size: 1.2rem;
-    margin-bottom: 1rem;
+.product-description-card {
+    display: none;
 }
 
 .product-type {
-    color: #a7a7a7;
-    font-size: 1rem;
-    margin-bottom: 0.5rem;
+    font-size: 0.8rem;
+    color: #b0e0e6;
+    margin-bottom: 10px;
 }
 
 .product-stats {
     display: flex;
-    justify-content: center;
-    gap: 1rem;
-    color: #a7a7a7;
-    font-size: 1rem;
-    margin-bottom: 1rem;
+    justify-content: space-between;
+    font-size: 0.8rem;
+    margin-bottom: 15px;
+}
+
+.product-price {
+  font-size: 1.2rem;
+  color: #fdfd96;
+  margin-bottom: 15px;
+  text-align: right;
 }
 
 .view-drop-button {
-    background: none;
-    border: 1px solid white;
-    color: white;
-    padding: 0.5rem 1rem;
-    font-size: 0.9rem;
-    font-weight: bold;
-    letter-spacing: 1px;
-    cursor: pointer;
-    transition: background-color 0.3s, color 0.3s;
+  background-color: #fd63a1;
+  color: white;
+  border: none;
+  padding: 10px;
+  width: 100%;
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1.2rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
 }
 
 .view-drop-button:hover {
-    background-color: white;
-    color: black;
+  background-color: #fdfd96;
+  color: #fd63a1;
 }
 
-.product-description-card {
-    color: #a7a7a7;
-    font-size: 0.9rem;
-    margin-bottom: 1rem;
-    height: 3.6em; /* 3 lines * 1.2em line-height */
-    line-height: 1.2em;
-    overflow: hidden;
-    text-overflow: ellipsis;
-    display: -webkit-box;
-    -webkit-line-clamp: 3;
-    -webkit-box-orient: vertical;
-}
-
-.product-description-modal {
-    font-size: 1rem;
-    line-height: 1.5;
-    color: #ccc;
-}
-
-
-/* Mobile Styles */
+/* Mobile specific styles */
 @media (max-width: 768px) {
     .shop-page-container {
         flex-direction: column;
-        height: auto;
-        min-height: 100vh;
-        overflow-y: auto;
-        -webkit-overflow-scrolling: touch;
     }
 
     .shop-sidebar {
         width: 100%;
-        max-width: none;
         border-right: none;
+        border-bottom: 4px solid #fd63a1;
         height: auto;
-        padding: 1rem;
-        overflow-y: visible;
-    }
-    
-    .sidebar-section {
-      margin-bottom: 1.5rem;
     }
 
-    .dispensary-title {
-        font-size: 2rem;
-    }
-
-    .sidebar-title {
-        font-size: 1.2rem;
-    }
-
-    .shop-main {
-        padding: 1rem;
-        overflow-y: visible;
-    }
-
-    .search-bar-container {
-        justify-content: center;
-        margin-bottom: 1.5rem;
-    }
-
-    .search-input {
-        width: 90%;
-        max-width: 400px;
-    }
-
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 1rem;
-    }
-
-    .product-info {
-        padding: 1rem;
-    }
-
-    .product-name {
-        font-size: 1.1rem;
-    }
-
-    .product-price {
+    .mobile-filter-toggle {
+        background-color: #fd63a1;
+        color: white;
+        border: none;
+        padding: 10px;
+        width: 100%;
         font-size: 1rem;
-    }
-
-    .product-description-modal {
-        font-size: 0.9rem;
+        margin-top: 10px;
     }
 }
 
-@media (max-width: 480px) {
-    .product-grid {
-        grid-template-columns: repeat(2, 1fr);
-        gap: 0.5rem;
-    }
+.product-description-modal {
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.9rem;
+    line-height: 1.6;
+    color: #eee;
+    height: 100px; /* Or a suitable height */
+    overflow-y: auto; /* scroll if content is too long */
+    padding-right: 10px; /* for scrollbar */
+}
 
-    .product-card {
-        height: auto;
-    }
+.animate-add-to-cart-snes {
+  animation: snes-add-to-cart 0.5s steps(2, end) forwards;
+}
 
-    .product-image-container {
-        height: 150px;
-    }
+@keyframes snes-add-to-cart {
+  0% {
+    background-color: #fd63a1;
+    color: white;
+    transform: scale(1);
+    box-shadow: none;
+  }
+  50% {
+    background-color: #fdfd96;
+    color: #fd63a1;
+    transform: scale(1.1) rotate(-5deg);
+    box-shadow: 0 0 0 5px #fff, 0 0 0 10px #fdfd96, 0 0 0 15px #fd63a1;
+  }
+  100% {
+    background-color: #4CAF50;
+    color: white;
+    transform: scale(1);
+  }
+}
 
-    .product-info {
-        padding: 0.5rem;
-    }
+.menu-button-style {
+    font-family: 'Jersey 20', sans-serif;
+    color: #fd63a1;
+    text-shadow: 2px 2px #4b0082;
+}
 
-    .product-name {
-        font-size: 1rem;
-    }
-
-    .product-description-card {
-        height: 4.8em; /* 4 lines * 1.2em line-height */
-        -webkit-line-clamp: 4;
-    }
+.menu-button-style:hover {
+    color: #fdfd96;
 }

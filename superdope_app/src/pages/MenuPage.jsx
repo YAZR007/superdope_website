@@ -11,23 +11,18 @@ export default function MenuPage() {
         <nav role="navigation" className="flex flex-1 w-full flex-col items-center justify-center pointer-events-auto text-white">
           <ul className="flex flex-col justify-center gap-4 md:gap-12 text-5xl sm:text-6xl md:text-8xl font-bold drop-shadow-md items-center w-full px-4">
             <li data-text="Media" className="uppercase transition-transform duration-100 hover:scale-110 relative group w-full text-center">
-              <TransitionLink to="/menu#media" className="transition-all duration-300 block w-full py-2 sm:py-4">
-                <div className="menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitched="1">Media</div>
+              <TransitionLink to="/media" className="transition-all duration-300 block w-full py-2 sm:py-4">
+                <div className="menu-button-style menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitched="1">Media</div>
               </TransitionLink>
             </li>
             <li data-text="Shop" className="uppercase transition-transform duration-100 hover:scale-110 relative group w-full text-center">
               <TransitionLink to="/shop" className="transition-all duration-300 block w-full py-2 sm:py-4">
-                <div className="menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitched="1">Shop</div>
-              </TransitionLink>
-            </li>
-            <li data-text="Merch" className="uppercase transition-transform duration-100 hover:scale-110 relative group w-full text-center">
-              <TransitionLink to="/collections/all" className="transition-all duration-300 block w-full py-2 sm:py-4">
-                <div className="menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitch="1">Merch</div>
+                <div className="menu-button-style menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitched="1">Shop</div>
               </TransitionLink>
             </li>
             <li data-text="Contact" className="uppercase transition-transform duration-100 hover:scale-110 relative group w-full text-center">
               <TransitionLink to="/contact" className="transition-all duration-300 block w-full py-2 sm:py-4">
-                <div className="menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitch="1">Contact</div>
+                <div className="menu-button-style menu-item-focus group-hover:text-stroke-xs-white group-focus:text-stroke-xs-white text-stroke-2xs z-10" data-glitch="1">Contact</div>
               </TransitionLink>
             </li>
           </ul>

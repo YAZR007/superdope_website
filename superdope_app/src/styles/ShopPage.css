@@ -232,11 +232,11 @@
     color: black;
 }
 
-.product-description {
+.product-description-card {
     color: #a7a7a7;
     font-size: 0.9rem;
     margin-bottom: 1rem;
-    height: 3.6em;
+    height: 3.6em; /* 3 lines * 1.2em line-height */
     line-height: 1.2em;
     overflow: hidden;
     text-overflow: ellipsis;
@@ -244,6 +244,13 @@
     -webkit-line-clamp: 3;
     -webkit-box-orient: vertical;
 }
+
+.product-description-modal {
+    font-size: 1rem;
+    line-height: 1.5;
+    color: #ccc;
+}
+
 
 /* Mobile Styles */
 @media (max-width: 768px) {
@@ -307,6 +314,10 @@
     .product-price {
         font-size: 1rem;
     }
+
+    .product-description-modal {
+        font-size: 0.9rem;
+    }
 }
 
 @media (max-width: 480px) {
@@ -329,5 +340,10 @@
 
     .product-name {
         font-size: 1rem;
+    }
+
+    .product-description-card {
+        height: 4.8em; /* 4 lines * 1.2em line-height */
+        -webkit-line-clamp: 4;
     }
 }

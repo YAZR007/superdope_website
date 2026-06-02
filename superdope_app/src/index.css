@@ -187,6 +187,4 @@ body::before {
 }
 
 .tv-wrapper {
-  box-shadow: 0 0 20px 5px #00f;
-  filter: brightness(1.3);
 }

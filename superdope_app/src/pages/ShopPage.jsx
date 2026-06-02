@@ -6,63 +6,39 @@ import { useCart } from '../App';
 const products = [
   {
     id: 1,
-    name: 'Cosmic Kush',
-    category: 'Flower',
-    price: 21,
-    type: 'Indica-dominant Hybrid',
-    thc: '25%',
-    cbd: '2%',
-    effects: ['Relaxing', 'Euphoric', 'Sleepy'],
-    description: 'A potent strain that will take you to another galaxy. Cosmic Kush is perfect for a relaxing night in, helping you unwind and drift off to sleep.',
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/3MKG4GUCQAWGTHZI5AJEM2VV.png'
+    name: 'OG Kush Resin',
+    category: 'Vapes',
+    price: 45,
+    type: 'Resin Vape',
+    thc: '85%',
+    cbd: '1%',
+    effects: ['Potent', 'Relaxing', 'Euphoric'],
+    description: 'A classic, potent resin vape for the discerning connoisseur. OG Kush provides a powerful, relaxing high.',
+    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/YOBJDT562XLEM4NYBTO6KPQT.png'
   },
   {
     id: 2,
-    name: 'Pixel Haze',
-    category: 'Flower',
-    price: 25,
-    type: 'Sativa',
-    thc: '22%',
+    name: 'Sour Diesel Resin',
+    category: 'Vapes',
+    price: 48,
+    type: 'Resin Vape',
+    thc: '88%',
     cbd: '< 1%',
-    effects: ['Energetic', 'Focused', 'Creative'],
-    description: 'A vibrant sativa that sharpens your senses and boosts creativity. Pixel Haze is the perfect companion for gaming, coding, or any activity that requires focus.',
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/4BIMMQVXWV6SKAW4NUZTRC64.png'
-  },
-  {
-    id: 3,
-    name: "Ronin's Reserve",
-    category: 'Flower',
-    price: 28,
-    type: 'Hybrid',
-    thc: '20%',
-    cbd: '5%',
-    effects: ['Balanced', 'Uplifting', 'Calming'],
-    description: "A perfectly balanced hybrid for the modern warrior. Ronin's Reserve offers an uplifting yet calming experience, ideal for social gatherings or solo adventures.",
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/DJPNC3IOPECM2446K6QV6HRD.png'
-  },
-  {
-    id: 4,
-    name: 'Samurai Spirit',
-    category: 'Prerolls',
-    price: 18,
-    type: 'Sativa-dominant Hybrid',
-    thc: '28%',
-    cbd: '1%',
-    effects: ['Euphoric', 'Talkative', 'Giggly'],
-    description: 'Unleash your inner samurai with this potent sativa-dominant hybrid. Samurai Spirit is known for its euphoric and social effects, making it great for sharing with friends.',
+    effects: ['Energetic', 'Uplifting', 'Creative'],
+    description: 'A legendary sativa in a potent resin vape. Sour Diesel is perfect for daytime use, providing an energetic and creative buzz.',
     imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/T2HX6CIMJVAOYYOM6RZEW7CB.png'
   },
   {
-    id: 5,
-    name: "Shogun's Secret",
+    id: 3,
+    name: 'Blue Dream Resin',
     category: 'Vapes',
-    price: 35,
-    type: 'Indica',
-    thc: '30%',
-    cbd: '3%',
-    effects: ['Sedating', 'Relaxing', 'Pain-relief'],
-    description: "A powerful indica fit for a shogun. Shogun's Secret is a heavy-hitter that provides deep relaxation and relief from pain, best used at the end of a long day.",
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/YOBJDT562XLEM4NYBTO6KPQT.png'
+    price: 42,
+    type: 'Resin Vape',
+    thc: '82%',
+    cbd: '2%',
+    effects: ['Balanced', 'Uplifting', 'Calming'],
+    description: 'A perfectly balanced hybrid resin vape. Blue Dream delivers a calming, yet uplifting experience, suitable for any occasion.',
+    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/DJPNC3IOPECM2446K6QV6HRD.png'
   }
 ];
 
@@ -82,27 +58,11 @@ function useMediaQuery(query) {
     return matches;
 }
 
-const Particles = () => {
-    const particleCount = 50;
-    const particles = [];
-    for (let i = 0; i < particleCount; i++) {
-        const style = {
-            left: `${Math.random() * 100}%`,
-            top: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 20}s`,
-            animationDuration: `${10 + Math.random() * 10}s`,
-            '--x': (Math.random() - 0.5) * 400
-        };
-        particles.push(<div key={i} className="particle white" style={style} />);
-    }
-    return <div className="particles-background">{particles}</div>;
-}
-
 const ShopPage = () => {
     const [selectedProduct, setSelectedProduct] = useState(null);
-    const [selectedWeight, setSelectedWeight] = useState('3.5g');
+    const [selectedWeight, setSelectedWeight] = useState('1g');
     const { addToCart } = useCart();
-    const [activeCategory, setActiveCategory] = useState('All');
+    const [activeCategory, setActiveCategory] = useState('Vapes');
     const [searchTerm, setSearchTerm] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     const isMobile = !useMediaQuery('(min-width: 769px)');
@@ -123,10 +83,9 @@ const ShopPage = () => {
 
     if (selectedProduct) {
         return (
-            <div className="h-full w-full flex items-center justify-center relative overflow-hidden" style={{ backgroundImage: "url('https://raw.githubusercontent.com/YAZR007/superdope_website/main/backgroundshop.jpg')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
-                <Particles />
+            <div className="h-full w-full flex items-center justify-center relative overflow-hidden" style={{ backgroundImage: "url('https://github.com/YAZR007/superdope_website/blob/main/backgroundshop.jpg?raw=true')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
                 <div className="w-full h-full bg-black bg-opacity-80 backdrop-blur-lg p-4 flex items-center justify-center absolute">
-                    <div className="bg-gradient-to-br from-purple-900 to-black border-2 border-[#fd63a1] rounded-2xl shadow-2xl shadow-[#fd63a1]/50 w-full max-w-5xl flex flex-col md:flex-row gap-6 items-center p-6 h-full md:h-auto overflow-y-auto md:overflow-y-visible">
+                    <div className="bg-gradient-to-br from-purple-900 to-black border-2 border-transparent rounded-2xl shadow-2xl w-full max-w-5xl flex flex-col md:flex-row gap-6 items-center p-6 h-full md:h-auto overflow-y-auto md:overflow-y-visible">
                         <div className="md:w-1/2 w-full flex-shrink-0">
                             <img src={selectedProduct.imageUrl} alt={selectedProduct.name} className="w-full h-auto object-contain rounded-lg" />
                         </div>
@@ -145,11 +104,14 @@ const ShopPage = () => {
                                     ))}
                                 </div>
                             </div>
-                            <p className="mt-3 text-lg md:text-xl alt-font leading-relaxed flex-grow">{selectedProduct.description}</p>
+                            <div className="my-4 flex-grow">
+                                <h3 className="font-bold gameplay text-xl md:text-2xl mb-2">Description</h3>
+                                <p className="product-description-modal">{selectedProduct.description}</p>
+                            </div>
                             <div className="mt-auto pt-4">
                                 <h3 className="font-bold gameplay text-xl md:text-2xl mb-3">Weight:</h3>
                                 <div className="flex flex-wrap gap-2 sm:gap-4 mb-4">
-                                    {['3.5g', '7g', '14g', '28g'].map(weight => (
+                                    {['1g', '2g'].map(weight => (
                                         <button key={weight} onClick={() => setSelectedWeight(weight)} className={`px-4 py-2 md:px-5 rounded-lg text-base md:text-lg font-bold transition-all duration-300 ${selectedWeight === weight ? 'bg-purple-600 shadow-lg scale-105' : 'bg-gray-800 hover:bg-gray-700'}`}>
                                             {weight}
                                         </button>
@@ -181,7 +143,7 @@ const ShopPage = () => {
                     <li key={cat} >
                         <button onClick={() => setActiveCategory(cat)} className={`category-button gameplay ${activeCategory === cat ? 'active' : ''}`}>
                             {cat}
-                            {['Prerolls', 'Concentrates', 'Vapes', 'Accessories'].includes(cat) && <span className='soon-tag'>SOON</span>}
+                            {['Prerolls', 'Concentrates', 'Flower', 'Accessories'].includes(cat) && <span className='soon-tag'>SOON</span>}
                         </button>
                     </li>
                 ))}
@@ -198,8 +160,7 @@ const ShopPage = () => {
     );
 
     return (
-        <div className="shop-page-container" style={{ backgroundImage: "url('https://raw.githubusercontent.com/YAZR007/superdope_website/main/backgroundshop.jpg')" }}>
-            <Particles />
+        <div className="shop-page-container" style={{ backgroundImage: "url('https://github.com/YAZR007/superdope_website/blob/main/backgroundshop.jpg?raw=true')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="shop-sidebar">
                 <div className='sidebar-section'>
                     <h1 className='dispensary-title alt-font'>THE DISPENSARY</h1>
@@ -232,7 +193,7 @@ const ShopPage = () => {
                             <div className="product-info">
                                 <p className="product-category gameplay">{product.category}</p>
                                 <h3 className="product-name alt-font">{product.name.toUpperCase()}</h3>
-                                <p className="product-description">{product.description}</p>
+                                <p className="product-description-card">{product.description}</p>
                                 <p className="product-type">{product.type}</p>
                                 <div className="product-stats">
                                     <span>THC: {product.thc}</span>

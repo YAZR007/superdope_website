@@ -8,6 +8,7 @@ import Cart from './components/Cart';
 import { Howl } from 'howler';
 import MediaComingSoon from './pages/MediaComingSoon';
 import ContactPage from './pages/ContactPage';
+import CheckoutPage from './pages/CheckoutPage'; // Import CheckoutPage
 
 const TransitionContext = createContext(null);
 const SoundContext = createContext(null);
@@ -68,6 +69,7 @@ function AnimatedRoutes({ addToCart }) {
           <Route path="/shop" element={<ShopPage addToCart={addToCart} />} />
           <Route path="/media" element={<MediaComingSoon />} />
           <Route path="/contact" element={<ContactPage />} />
+          <Route path="/checkout" element={<CheckoutPage />} /> {/* Add checkout route */}
           <Route path="*" element={<IndexPage />} />
         </Routes>
       </div>

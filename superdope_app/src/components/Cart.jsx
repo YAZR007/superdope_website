@@ -1,13 +1,19 @@
 import React from 'react';
-import { useCart } from '../App';
+import { useCart, useTransitionNavigate } from '../App';
 import '../styles/Cart.css';
 
 const Cart = () => {
   const { cart, removeFromCart, isCartOpen, toggleCart } = useCart();
+  const navigate = useTransitionNavigate();
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);
   }
+
+  const handleCheckout = () => {
+    toggleCart();
+    navigate('/checkout');
+  };
 
   return (
     <div className={`cart-container ${isCartOpen ? 'open' : ''}`}>
@@ -37,7 +43,7 @@ const Cart = () => {
         </div>
         <div className="cart-footer">
           <h3 className="sidebar-title alt-font">Total: £{getTotalPrice()}</h3>
-          <button className="checkout-button view-drop-button alt-font">Checkout</button>
+          <button className="checkout-button view-drop-button alt-font" onClick={handleCheckout}>Checkout</button>
         </div>
       </div>
   );

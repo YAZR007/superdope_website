@@ -1,8 +1,21 @@
+
 import { Link } from 'react-router-dom';
 import { useCart } from '../App';
+import { useState, useEffect } from 'react';
 
 export default function Navbar() {
-  const { toggleCart } = useCart();
+  const { toggleCart, cart } = useCart();
+  const [animate, setAnimate] = useState(false);
+
+  const cartCount = cart.reduce((total, item) => total + item.quantity, 0);
+
+  useEffect(() => {
+    if (cartCount > 0) {
+      setAnimate(true);
+      const timer = setTimeout(() => setAnimate(false), 500); // Animation duration
+      return () => clearTimeout(timer);
+    }
+  }, [cartCount]);
 
   return (
     <div className="dope-navbar-container flex h-[90px] w-full pb-[10px]">
@@ -34,6 +47,11 @@ export default function Navbar() {
                       <path d="M0 0H30V30H0V0Z" fill="white"></path><path d="M30 0H60V30H30V0Z" fill="white"></path><path d="M60 30H90V60H60V30Z" fill="white"></path><path d="M90 234H120V264H90V234Z" fill="white"></path><path d="M345 234H375V264H345V234Z" fill="white"></path><path d="M120 264H150V291H120V264Z" fill="white"></path><path d="M375 264H405V291H375V264Z" fill="white"></path><path d="M90 291H120V309H90V291Z" fill="white"></path><path d="M345 291H375V309H345V291Z" fill="white"></path><path d="M60 264H90V291H60V264Z" fill="white"></path><path d="M315 264H345V291H315V264Z" fill="white"></path><path d="M90 60H120V180H90V60Z" fill="white"></path><path d="M150 90H180V210H150V90Z" fill="white"></path><path d="M210 90H240V210H210V90Z" fill="white"></path><path d="M330 120V150L120 150V120L330 120Z" fill="white"></path><path d="M270 90H300V210H270V90Z" fill="white"></path><path d="M330 90H360V180H330V90Z" fill="white"></path><path d="M360 60V90H120V60H360Z" fill="white"></path><path d="M330 180V210L120 210V180H330Z" fill="white"></path>
                     </g>
                   </svg>
+                  {cartCount > 0 && (
+                    <div className={`absolute -top-2 -right-2 flex h-6 w-6 items-center justify-center rounded-full bg-red-500 text-xs font-bold text-white ${animate ? 'animate-snes' : ''}`}>
+                      {cartCount}
+                    </div>
+                  )}
                 </div>
               </button>
             </div>

@@ -1,42 +1,53 @@
-import { useCart } from '../App';
+import React from 'react';
+import '../styles/CheckoutPage.css';
 
-export default function CheckoutPage() {
-  const { cart } = useCart();
+const CheckoutPage = () => {
+  const cryptoOptions = [
+    {
+      name: 'Bitcoin',
+      address: 'bc1qxy2kgdygjrsqtzq2n0yrf2493p83kkfjhx0wlh',
+      icon: 'https://cryptologos.cc/logos/bitcoin-btc-logo.png?v=029'
+    },
+    {
+      name: 'Ethereum',
+      address: '0xde0B295669a9FD93d5F28D9Ec85E40f4cb697BAe',
+      icon: 'https://cryptologos.cc/logos/ethereum-eth-logo.png?v=029'
+    },
+    {
+      name: 'Dogecoin',
+      address: 'D7yjjfE5A2Z3e4fE2fB8E21A1C3b4D5e6F7',
+      icon: 'https://cryptologos.cc/logos/dogecoin-doge-logo.png?v=029'
+    },
+  ];
 
-  const total = cart.reduce((acc, item) => acc + item.price * item.quantity, 0);
+  const handleCopyAddress = (address) => {
+    navigator.clipboard.writeText(address).then(() => {
+      alert('Address copied to clipboard!');
+    }, (err) => {
+      alert('Failed to copy address: ', err);
+    });
+  };
 
   return (
-    <div className="h-full w-full flex flex-col items-center justify-center p-8">
-      <h1 className="text-4xl font-bold mb-8">Checkout</h1>
-      <div className="w-full max-w-2xl bg-gray-800 p-8 rounded-lg">
-        <h2 className="text-2xl font-bold mb-4">Order Summary</h2>
-        <div className="space-y-4">
-          {cart.map(item => (
-            <div key={`${item.id}-${item.weight}`} className="flex justify-between">
-              <div>
-                <p className="font-bold">{item.name}</p>
-                <p className="text-sm text-gray-400">{item.weight}g</p>
-              </div>
-              <p>${(item.price * item.quantity).toFixed(2)}</p>
+    <div className="checkout-container">
+      <h1 className="checkout-title">Crypto Payment</h1>
+      <p className="checkout-subtitle">Select a currency and send the total amount to the address below.</p>
+      <div className="crypto-options">
+        {cryptoOptions.map(crypto => (
+          <div key={crypto.name} className="crypto-option">
+            <img src={crypto.icon} alt={`${crypto.name} logo`} className="crypto-icon" />
+            <div className="crypto-info">
+              <h2 className="crypto-name">{crypto.name}</h2>
+              <p className="crypto-address">{crypto.address}</p>
+              <button className="copy-button" onClick={() => handleCopyAddress(crypto.address)}>
+                Copy Address
+              </button>
             </div>
-          ))}
-        </div>
-        <div className="border-t border-gray-700 mt-4 pt-4 flex justify-between font-bold text-lg">
-          <p>Total</p>
-          <p>${total.toFixed(2)}</p>
-        </div>
-        <div className="mt-8">
-          <h2 className="text-2xl font-bold mb-4">Payment Method</h2>
-          <div className="flex items-center space-x-4">
-            <button className="bg-blue-500 hover:bg-blue-600 text-white font-bold py-2 px-4 rounded">
-              Pay with Card
-            </button>
-            <button className="bg-green-500 hover:bg-green-600 text-white font-bold py-2 px-4 rounded">
-              Pay with Crypto
-            </button>
           </div>
-        </div>
+        ))}
       </div>
     </div>
   );
-}
+};
+
+export default CheckoutPage;

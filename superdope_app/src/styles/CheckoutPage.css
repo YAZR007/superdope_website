@@ -1,0 +1,83 @@
+.checkout-container {
+  padding: 2rem;
+  background-color: #000;
+  color: #fff;
+  font-family: 'Press Start 2P', cursive;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.checkout-title {
+  font-size: 2.5rem;
+  margin-bottom: 1rem;
+  text-transform: uppercase;
+  color: #fdfd96;
+}
+
+.checkout-subtitle {
+  font-size: 1rem;
+  margin-bottom: 2rem;
+  text-align: center;
+}
+
+.crypto-options {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 2rem;
+  width: 100%;
+  max-width: 900px;
+}
+
+.crypto-option {
+  background: rgba(0,0,0,0.8);
+  border: 2px solid #fd63a1;
+  padding: 1.5rem;
+  display: flex;
+  align-items: center;
+  transition: transform 0.2s ease;
+}
+
+.crypto-option:hover {
+  transform: scale(1.05);
+}
+
+.crypto-icon {
+  width: 50px;
+  height: 50px;
+  margin-right: 1.5rem;
+}
+
+.crypto-info {
+  display: flex;
+  flex-direction: column;
+}
+
+.crypto-name {
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1.8rem;
+  color: #fdfd96;
+}
+
+.crypto-address {
+  font-size: 0.8rem;
+  margin: 0.5rem 0;
+  word-break: break-all;
+}
+
+.copy-button {
+  background-color: #fd63a1;
+  color: white;
+  border: none;
+  padding: 0.5rem 1rem;
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1rem;
+  cursor: pointer;
+  transition: background-color 0.2s;
+  align-self: flex-start;
+}
+
+.copy-button:hover {
+  background-color: #fdfd96;
+  color: #fd63a1;
+}

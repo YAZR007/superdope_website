@@ -1,10 +1,11 @@
 import React from 'react';
-import { useCart, useTransitionNavigate } from '../App';
+import { useCart } from '../App';
 import '../styles/Cart.css';
+import { useNavigate } from 'react-router-dom';
 
 const Cart = () => {
   const { cart, removeFromCart, isCartOpen, toggleCart } = useCart();
-  const navigate = useTransitionNavigate();
+  const navigate = useNavigate();
 
   const getTotalPrice = () => {
     return cart.reduce((total, item) => total + item.price * item.quantity, 0);

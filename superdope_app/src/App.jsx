@@ -8,7 +8,8 @@ import Cart from './components/Cart';
 import { Howl } from 'howler';
 import MediaComingSoon from './pages/MediaComingSoon';
 import ContactPage from './pages/ContactPage';
-import CheckoutPage from './pages/CheckoutPage'; // Import CheckoutPage
+import CheckoutPage from './pages/CheckoutPage';
+import AgeVerification from './components/AgeVerification';
 
 const TransitionContext = createContext(null);
 const SoundContext = createContext(null);
@@ -78,17 +79,22 @@ function AnimatedRoutes({ addToCart }) {
 }
 
 function App() {
+  const [isVerified, setIsVerified] = useState(false);
   const [soundEnabled, setSoundEnabled] = useState(true);
   const [cart, setCart] = useState([]);
 
+  const handleVerification = () => {
+    setIsVerified(true);
+  };
+
   useEffect(() => {
-    if (soundEnabled) {
+    if (isVerified && soundEnabled) {
       backgroundMusic.play();
     } else {
       backgroundMusic.stop();
     }
     return () => backgroundMusic.stop();
-  }, [soundEnabled]);
+  }, [isVerified, soundEnabled]);
 
   const playHoverSound = () => {
     if (soundEnabled) {
@@ -135,17 +141,22 @@ function App() {
     <SoundContext.Provider value={{ soundEnabled, toggleSound, playHoverSound, playClickSound }}>
         <CartContext.Provider value={{ cart, addToCart, removeFromCart, isCartOpen, toggleCart }}>
             <BrowserRouter>
-                <div id="root-render-node" className="bg-black text-white h-full w-full flex flex-col font-['Jersey_20']">
-                <div className="flex h-full w-full flex-col shadow-[0_0_10px_0_#000_inset]">
-                    <div className="tv-wrapper relative z-20 mx-4 mt-4 flex select-none flex-col overflow-hidden rounded-3xl bg-black flex-1 min-h-0">
-                    <main id="mainContainer" className="pointer-events-auto relative flex h-full w-full flex-col overflow-hidden">
-                        <AnimatedRoutes addToCart={addToCart} />
-                    </main>
+              { !isVerified ?
+                <AgeVerification onVerified={handleVerification} /> :
+                (
+                  <div id="root-render-node" className="bg-black text-white h-full w-full flex flex-col font-['Jersey_20']">
+                    <div className="flex h-full w-full flex-col shadow-[0_0_10px_0_#000_inset]">
+                        <div className="tv-wrapper relative z-20 mx-4 mt-4 flex select-none flex-col overflow-hidden rounded-3xl bg-black flex-1 min-h-0">
+                        <main id="mainContainer" className="pointer-events-auto relative flex h-full w-full flex-col overflow-hidden">
+                            <AnimatedRoutes addToCart={addToCart} />
+                        </main>
+                        </div>
+                        <Navbar />
+                        <Cart />
                     </div>
-                    <Navbar />
-                    <Cart />
-                </div>
-                </div>
+                  </div>
+                )
+              }
             </BrowserRouter>
         </CartContext.Provider>
     </SoundContext.Provider>

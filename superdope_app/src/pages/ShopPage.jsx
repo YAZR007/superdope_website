@@ -13,7 +13,7 @@ const products = [
     thc: '85%',
     cbd: '1%',
     effects: ['Potent', 'Relaxing', 'Euphoric'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/logo.png'
+    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/1000040341-removebg-preview.png?raw=true'
   },
   {
     id: 2,
@@ -24,7 +24,7 @@ const products = [
     thc: '88%',
     cbd: '< 1%',
     effects: ['Energetic', 'Uplifting', 'Creative'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/logo.png'
+    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/1000040341-removebg-preview.png?raw=true'
   },
   {
     id: 3,
@@ -35,7 +35,7 @@ const products = [
     thc: '82%',
     cbd: '2%',
     effects: ['Balanced', 'Uplifting', 'Calming'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/logo.png'
+    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/1000040341-removebg-preview.png?raw=true'
   },
   {
     id: 4,
@@ -46,7 +46,7 @@ const products = [
     thc: '90%',
     cbd: '1%',
     effects: ['Happy', 'Uplifted', 'Euphoric'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/logo.png'
+    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
   },
   {
     id: 5,
@@ -57,7 +57,7 @@ const products = [
     thc: '85%',
     cbd: '1%',
     effects: ['Energetic', 'Uplifted', 'Focused'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/logo.png'
+    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
   },
   {
     id: 6,
@@ -68,7 +68,7 @@ const products = [
     thc: '87%',
     cbd: '1%',
     effects: ['Happy', 'Uplifted', 'Energetic'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/logo.png'
+    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
   },
   {
     id: 7,
@@ -79,7 +79,7 @@ const products = [
     thc: '92%',
     cbd: '1%',
     effects: ['Relaxed', 'Happy', 'Euphoric'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/logo.png'
+    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
   }
 ];
 
@@ -101,7 +101,7 @@ function useMediaQuery(query) {
 
 const ShopPage = () => {
     const { addToCart } = useCart();
-    const [activeCategory, setActiveCategory] = useState('Vapes');
+    const [activeCategory, setActiveCategory] = useState('All');
     const [searchTerm, setSearchTerm] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
     const isMobile = !useMediaQuery('(min-width: 769px)');
@@ -123,23 +123,23 @@ const ShopPage = () => {
 
     const sidebarContent = (
       <>
-        <div className='sidebar-section'>
-            <h2 className='sidebar-title alt-font'>CATEGORIES</h2>
-            <ul className='category-list'>
+        <div class='sidebar-section'>
+            <h2 class='sidebar-title alt-font'>CATEGORIES</h2>
+            <ul class='category-list'>
                 {categories.map(cat => (
                     <li key={cat} >
                         <button onClick={() => setActiveCategory(cat)} className={`category-button gameplay ${activeCategory === cat ? 'active' : ''}`}>
                             {cat}
-                            {['Flower', 'Concentrates', 'Vapes'].includes(cat) && <span className='soon-tag'>SOON</span>}
+                            {['Flower', 'Concentrates', 'Vapes'].includes(cat) && <span class='soon-tag'>SOON</span>}
                         </button>
                     </li>
                 ))}
             </ul>
         </div>
-        <div className='sidebar-section'>
-            <h2 className='sidebar-title alt-font'>SORT BY</h2>
-            <ul className='sort-list'>
-                <li><button className='sort-button gameplay'>PRICE: LOW TO HIGH</button></li>
+        <div class='sidebar-section'>
+            <h2 class='sidebar-title alt-font'>SORT BY</h2>
+            <ul class='sort-list'>
+                <li><button class='sort-button gameplay'>PRICE: LOW TO HIGH</button></li>
             </ul>
         </div>
       </>
@@ -148,8 +148,8 @@ const ShopPage = () => {
     return (
         <div className="shop-page-container" style={{ backgroundImage: "url('https://github.com/YAZR007/superdope_website/blob/main/backgroundshop.jpg?raw=true')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="shop-sidebar">
-                <div className='sidebar-section'>
-                    <h1 className='dispensary-title alt-font'>THE DISPENSARY</h1>
+                <div class='sidebar-section'>
+                    <h1 class='dispensary-title alt-font'>THE DISPENSARY</h1>
                 </div>
                 {isMobile && (
                     <button className="mobile-filter-toggle gameplay" onClick={() => setIsFilterVisible(!isFilterVisible)}>
@@ -172,9 +172,10 @@ const ShopPage = () => {
                 <div className="product-grid">
                     {filteredProducts.map(product => (
                         <div key={product.id} className="product-card">
-                            <div className="product-image-container">
-                                <img src={product.imageUrl} alt={product.name} className="product-image" />
-                            </div>
+                            <div 
+                                className="product-image-container"
+                                style={{ backgroundImage: `url(${product.imageUrl})` }}
+                            />
                             <div className="product-info">
                                 <p className="product-category gameplay">{product.category}</p>
                                 <h3 className="product-name gameplay">{product.name.toUpperCase()}</h3>

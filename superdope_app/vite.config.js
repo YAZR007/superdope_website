@@ -14,5 +14,9 @@ export default defineConfig({
     headers: {
       'Cache-Control': 'no-store',
     },
+    // Add this rewrite rule
+    historyApiFallback: {
+      index: '/index.html'
+    }
   },
 })

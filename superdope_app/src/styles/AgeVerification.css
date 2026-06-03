@@ -1,0 +1,68 @@
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Jersey+20&display=swap');
+
+.age-verification-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 100vh;
+  background-color: #000;
+  color: white;
+  font-family: 'Press Start 2P', cursive;
+  background-image: url('https://github.com/YAZR007/superdope_website/blob/main/backgroundshop.jpg?raw=true');
+  background-size: cover;
+  background-position: center;
+}
+
+.age-verification-box {
+  background: rgba(0,0,0,0.8);
+  border: 8px solid #fdfd96;
+  padding: 40px;
+  text-align: center;
+  box-shadow: 0 0 25px rgba(253, 99, 161, 0.7);
+}
+
+.age-verification-logo {
+  width: 150px;
+  margin: 0 auto 20px;
+}
+
+.age-verification-title {
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 3rem;
+  color: #fdfd96;
+  text-shadow: 2px 2px #fd63a1;
+  margin-bottom: 20px;
+}
+
+.age-verification-buttons {
+  display: flex;
+  gap: 20px;
+  justify-content: center;
+  margin-top: 30px;
+}
+
+.age-verification-button {
+  font-family: 'Jersey 20', sans-serif;
+  font-size: 1.5rem;
+  padding: 10px 30px;
+  border: 4px solid #fdfd96;
+  background-color: rgba(253, 253, 150, 0.2);
+  color: white;
+  text-shadow: 1px 1px #fd63a1;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.age-verification-button:hover {
+  background-color: rgba(253, 253, 150, 0.5);
+  box-shadow: 0 0 15px rgba(253, 253, 150, 0.7);
+}
+
+.age-verification-message {
+    color: #fd63a1;
+    margin-top: 20px;
+    text-shadow: 1px 1px #000;
+    font-size: 1.2rem;
+}

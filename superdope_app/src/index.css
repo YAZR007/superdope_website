@@ -36,3 +36,18 @@
 .animate-snes {
   animation: snes-anim 0.5s ease-in-out;
 }
+
+@media (max-width: 768px) {
+  html, body, #root {
+    font-size: 14px;
+  }
+
+  #root-render-node {
+    font-size: 14px;
+  }
+
+  .tv-wrapper {
+    margin: 2px !important;
+    border-radius: 1rem !important;
+  }
+}

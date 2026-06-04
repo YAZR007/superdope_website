@@ -103,8 +103,8 @@
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  gap: 15px;
 }
 
 .product-card {
@@ -204,6 +204,64 @@
         border-right: none;
         border-bottom: 4px solid #fd63a1;
         height: auto;
+        padding: 15px;
+    }
+
+    .dispensary-title {
+        font-size: 1.5rem;
+    }
+
+    .sidebar-title {
+        font-size: 1.2rem;
+        margin-bottom: 10px;
+    }
+
+    .shop-main {
+        padding: 15px;
+    }
+
+    .search-input {
+        padding: 10px;
+        font-size: 0.9rem;
+    }
+
+    .product-grid {
+        grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
+        gap: 10px;
+    }
+
+    .product-card {
+        padding: 10px;
+    }
+
+    .product-image-container {
+        height: 140px;
+        margin-bottom: 10px;
+    }
+
+    .product-name {
+        font-size: 1rem;
+    }
+
+    .product-category {
+        font-size: 0.6rem;
+    }
+
+    .product-type {
+        font-size: 0.65rem;
+    }
+
+    .product-stats {
+        font-size: 0.6rem;
+    }
+
+    .product-price {
+        font-size: 0.9rem;
+    }
+
+    .view-drop-button {
+        padding: 8px;
+        font-size: 0.85rem;
     }
 
     .mobile-filter-toggle {
@@ -212,8 +270,13 @@
         border: none;
         padding: 10px;
         width: 100%;
-        font-size: 1rem;
+        font-size: 0.9rem;
         margin-top: 10px;
+    }
+
+    .category-button, .sort-button {
+        padding: 8px 5px;
+        font-size: 0.8rem;
     }
 }
 

@@ -3,10 +3,11 @@
 .cart-container {
   position: fixed;
   top: 0;
-  right: -400px;
-  width: 400px;
+  right: -100%;
+  width: 100%;
+  max-width: 400px;
   height: 100%;
-  background-color: rgba(0, 0, 0, 0.9);
+  background-color: rgba(0, 0, 0, 0.95);
   border-left: 4px solid #fd63a1;
   transition: right 0.3s ease-in-out;
   z-index: 1000;
@@ -179,4 +180,40 @@
 
 .animate-snes {
   animation: snes-anim 0.5s ease-in-out;
+}
+
+@media (max-width: 768px) {
+  .cart-container {
+    width: 100%;
+    max-width: none;
+  }
+
+  .cart-header {
+    padding: 15px;
+  }
+
+  .cart-items {
+    padding: 15px;
+  }
+
+  .cart-footer {
+    padding: 15px;
+  }
+
+  .sidebar-title {
+    font-size: 1.2rem;
+  }
+
+  .product-name {
+    font-size: 1rem;
+  }
+
+  .view-drop-button {
+    font-size: 0.9rem;
+    padding: 8px;
+  }
+
+  .gameplay {
+    font-size: 0.7rem;
+  }
 }

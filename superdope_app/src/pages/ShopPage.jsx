@@ -1,87 +1,7 @@
 
 import React, { useState, useEffect } from 'react';
+import { useNavigate } from 'react-router-dom';
 import '../styles/ShopPage.css';
-import { useCart } from '../App';
-
-const products = [
-  {
-    id: 1,
-    name: 'OG Kush Resin',
-    category: 'Vapes',
-    price: 45,
-    type: 'Resin Vape',
-    thc: '85%',
-    cbd: '1%',
-    effects: ['Potent', 'Relaxing', 'Euphoric'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/1000040341-removebg-preview.png?raw=true'
-  },
-  {
-    id: 2,
-    name: 'Sour Diesel Resin',
-    category: 'Vapes',
-    price: 48,
-    type: 'Resin Vape',
-    thc: '88%',
-    cbd: '< 1%',
-    effects: ['Energetic', 'Uplifting', 'Creative'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/1000040341-removebg-preview.png?raw=true'
-  },
-  {
-    id: 3,
-    name: 'Blue Dream Resin',
-    category: 'Vapes',
-    price: 42,
-    type: 'Resin Vape',
-    thc: '82%',
-    cbd: '2%',
-    effects: ['Balanced', 'Uplifting', 'Calming'],
-    imageUrl: 'https://raw.githubusercontent.com/YAZR007/superdope_website/main/1000040341-removebg-preview.png?raw=true'
-  },
-  {
-    id: 4,
-    name: 'Runtz',
-    category: 'Carts',
-    price: 35,
-    type: 'Cartridge',
-    thc: '90%',
-    cbd: '1%',
-    effects: ['Happy', 'Uplifted', 'Euphoric'],
-    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
-  },
-  {
-    id: 5,
-    name: 'Pineapple Express',
-    category: 'Carts',
-    price: 38,
-    type: 'Cartridge',
-    thc: '85%',
-    cbd: '1%',
-    effects: ['Energetic', 'Uplifted', 'Focused'],
-    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
-  },
-  {
-    id: 6,
-    name: 'Mimosa',
-    category: 'Carts',
-    price: 36,
-    type: 'Cartridge',
-    thc: '87%',
-    cbd: '1%',
-    effects: ['Happy', 'Uplifted', 'Energetic'],
-    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
-  },
-  {
-    id: 7,
-    name: 'Gelato',
-    category: 'Carts',
-    price: 40,
-    type: 'Cartridge',
-    thc: '92%',
-    cbd: '1%',
-    effects: ['Relaxed', 'Happy', 'Euphoric'],
-    imageUrl: 'https://github.com/YAZR007/superdope_website/blob/main/1000040335-removebg-preview.png?raw=true'
-  }
-];
 
 function useMediaQuery(query) {
     const [matches, setMatches] = useState(false);
@@ -99,47 +19,44 @@ function useMediaQuery(query) {
     return matches;
 }
 
-const ShopPage = () => {
-    const { addToCart } = useCart();
+const ShopPage = ({ products }) => {
     const [activeCategory, setActiveCategory] = useState('All');
-    const [searchTerm, setSearchTerm] = useState('');
     const [isFilterVisible, setIsFilterVisible] = useState(false);
+    const [clickedProduct, setClickedProduct] = useState(null);
+    const navigate = useNavigate();
     const isMobile = !useMediaQuery('(min-width: 769px)');
-    const [addingProductId, setAddingProductId] = useState(null);
 
-    const handleAddToCart = (product) => {
-        addToCart({ ...product, quantity: 1 }, '1g');
-        setAddingProductId(product.id);
+    const handleProductClick = (productId) => {
+        setClickedProduct(productId);
         setTimeout(() => {
-            setAddingProductId(null);
-        }, 500);
+            navigate(`/product/${productId}`);
+        }, 300); 
     };
 
     const filteredProducts = products
         .filter(p => activeCategory === 'All' || p.category === activeCategory)
-        .filter(p => p.name.toLowerCase().includes(searchTerm.toLowerCase()));
 
-    const categories = ['All', 'Flower', 'Concentrates', 'Vapes', 'Carts'];
+    const categories = ['All', 'Edibles', 'Vapes', 'Carts'];
 
     const sidebarContent = (
       <>
-        <div class='sidebar-section'>
-            <h2 class='sidebar-title alt-font'>CATEGORIES</h2>
-            <ul class='category-list'>
+        <div className='sidebar-section'>
+            <h2 className='sidebar-title alt-font'>CATEGORIES</h2>
+            <ul className='category-list'>
                 {categories.map(cat => (
                     <li key={cat} >
                         <button onClick={() => setActiveCategory(cat)} className={`category-button gameplay ${activeCategory === cat ? 'active' : ''}`}>
                             {cat}
-                            {['Flower', 'Concentrates', 'Vapes'].includes(cat) && <span class='soon-tag'>SOON</span>}
+                            {['Edibles', 'Vapes'].includes(cat) && <span className='soon-tag'>SOON</span>}
                         </button>
                     </li>
                 ))}
             </ul>
         </div>
-        <div class='sidebar-section'>
-            <h2 class='sidebar-title alt-font'>SORT BY</h2>
-            <ul class='sort-list'>
-                <li><button class='sort-button gameplay'>PRICE: LOW TO HIGH</button></li>
+        <div className='sidebar-section'>
+            <h2 className='sidebar-title alt-font'>SORT BY</h2>
+            <ul className='sort-list'>
+                <li><button className='sort-button gameplay'>PRICE: LOW TO HIGH</button></li>
             </ul>
         </div>
       </>
@@ -148,8 +65,8 @@ const ShopPage = () => {
     return (
         <div className="shop-page-container" style={{ backgroundImage: "url('https://github.com/YAZR007/superdope_website/blob/main/backgroundshop.jpg?raw=true')", backgroundSize: 'cover', backgroundPosition: 'center' }}>
             <div className="shop-sidebar">
-                <div class='sidebar-section'>
-                    <h1 class='dispensary-title alt-font'>THE DISPENSARY</h1>
+                <div className='sidebar-section'>
+                    <h1 className='dispensary-title alt-font'>THE DISPENSARY</h1>
                 </div>
                 {isMobile && (
                     <button className="mobile-filter-toggle gameplay" onClick={() => setIsFilterVisible(!isFilterVisible)}>
@@ -160,18 +77,13 @@ const ShopPage = () => {
             </div>
 
             <div className="shop-main">
-                <div className="search-bar-container">
-                    <input
-                        type="text"
-                        placeholder="Search strains..."
-                        className="search-input gameplay"
-                        value={searchTerm}
-                        onChange={(e) => setSearchTerm(e.target.value)}
-                    />
-                </div>
                 <div className="product-grid">
                     {filteredProducts.map(product => (
-                        <div key={product.id} className="product-card">
+                        <div 
+                            key={product.id} 
+                            className={`product-card ${clickedProduct === product.id ? 'clicked' : ''}`}
+                            onClick={() => handleProductClick(product.id)}
+                        >
                             <div 
                                 className="product-image-container"
                                 style={{ backgroundImage: `url(${product.imageUrl})` }}
@@ -185,15 +97,6 @@ const ShopPage = () => {
                                     <span>CBD: {product.cbd}</span>
                                 </div>
                                 <p className="product-price gameplay">£{product.price}</p>
-                                <button
-                                    onClick={(e) => {
-                                        e.stopPropagation();
-                                        handleAddToCart(product);
-                                    }}
-                                    className={`view-drop-button alt-font ${addingProductId === product.id ? 'animate-add-to-cart-snes' : ''}`}
-                                >
-                                    {addingProductId === product.id ? 'ADDED!' : 'ADD TO CART'}
-                                </button>
                             </div>
                         </div>
                     ))}

@@ -87,18 +87,48 @@
   background: rgba(0,0,0,0.7);
 }
 
-.search-bar-container {
+.product-conveyor-container {
   margin-bottom: 20px;
 }
 
-.search-input {
-  width: 100%;
-  padding: 15px;
-  background-color: rgba(255,255,255,0.1);
-  border: 2px solid #fd63a1;
-  border-radius: 0;
-  color: white;
-  font-size: 1rem;
+.conveyor-title {
+    font-family: 'Jersey 20', sans-serif;
+    font-size: 1.8rem;
+    color: #fdfd96;
+    margin-bottom: 15px;
+}
+
+.product-conveyor {
+    display: flex;
+    overflow-x: auto;
+    padding-bottom: 15px;
+    gap: 15px;
+}
+
+.product-card-conveyor {
+    background: rgba(0,0,0,0.8);
+    border: 2px solid #fd63a1;
+    padding: 10px;
+    color: white;
+    cursor: pointer;
+    transition: transform 0.2s, box-shadow 0.2s;
+    display: flex;
+    flex-direction: column;
+    min-width: 150px;
+}
+
+.product-image-container-conveyor {
+    height: 150px;
+    margin-bottom: 10px;
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+}
+
+.product-name-conveyor {
+    font-family: 'Jersey 20', sans-serif;
+    font-size: 1rem;
+    color: #fdfd96;
 }
 
 .product-grid {
@@ -108,19 +138,60 @@
 }
 
 .product-card {
-  background: rgba(0,0,0,0.8);
-  border: 2px solid #fd63a1;
-  padding: 15px;
+  background: rgba(25, 25, 25, 0.85);
   color: white;
   cursor: pointer;
   transition: transform 0.2s, box-shadow 0.2s;
   display: flex;
   flex-direction: column;
+  border-style: solid;
+  border-width: 4px;
+  border-image: linear-gradient(45deg, #fd63a1, #fdfd96) 1;
+  box-shadow: 0 0 15px rgba(253, 99, 161, 0.3);
+  position: relative;
+  padding: 15px;
 }
+
+.product-card::before, .product-card::after {
+    content: '';
+    position: absolute;
+    left: -4px; top: -4px; right: -4px; bottom: -4px;
+    border-style: solid;
+    border-width: 4px;
+    border-image: linear-gradient(45deg, #fdfd96, #fd63a1) 1;
+    z-index: -1;
+    transition: all 0.3s;
+}
+
+.product-card:hover::before {
+    transform: rotate(5deg);
+}
+.product-card:hover::after {
+    transform: rotate(-5deg);
+}
+
 
 .product-card:hover {
   transform: translateY(-5px);
   box-shadow: 0 5px 15px rgba(253, 99, 161, 0.5);
+}
+
+.product-card.clicked {
+  animation: snes-select 0.3s forwards;
+}
+
+@keyframes snes-select {
+  0% {
+    transform: scale(1);
+  }
+  50% {
+    transform: scale(0.95);
+    background-color: rgba(253, 99, 161, 0.5);
+  }
+  100% {
+    transform: scale(1.05);
+    background-color: rgba(253, 253, 150, 0.5);
+  }
 }
 
 .product-image-container {

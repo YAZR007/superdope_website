@@ -141,7 +141,7 @@
   background: rgba(25, 25, 25, 0.85);
   color: white;
   cursor: pointer;
-  transition: transform 0.2s, box-shadow 0.2s;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
   display: flex;
   flex-direction: column;
   border-style: solid;
@@ -152,45 +152,26 @@
   padding: 15px;
 }
 
-.product-card::before, .product-card::after {
-    content: '';
-    position: absolute;
-    left: -4px; top: -4px; right: -4px; bottom: -4px;
-    border-style: solid;
-    border-width: 4px;
-    border-image: linear-gradient(45deg, #fdfd96, #fd63a1) 1;
-    z-index: -1;
-    transition: all 0.3s;
-}
-
-.product-card:hover::before {
-    transform: rotate(5deg);
-}
-.product-card:hover::after {
-    transform: rotate(-5deg);
-}
-
-
 .product-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 5px 15px rgba(253, 99, 161, 0.5);
+  transform: translateY(-10px) scale(1.03);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
 }
 
 .product-card.clicked {
-  animation: snes-select 0.3s forwards;
+  animation: card-click 0.4s forwards;
 }
 
-@keyframes snes-select {
+@keyframes card-click {
   0% {
-    transform: scale(1);
+    transform: translateY(-10px) scale(1.03);
   }
   50% {
-    transform: scale(0.95);
-    background-color: rgba(253, 99, 161, 0.5);
+    transform: translateY(-5px) scale(0.98);
+    box-shadow: 0 10px 20px rgba(0,0,0,0.2);
   }
   100% {
-    transform: scale(1.05);
-    background-color: rgba(253, 253, 150, 0.5);
+    transform: translateY(-10px) scale(1.03);
+    box-shadow: 0 20px 40px rgba(0, 0, 0, 0.4);
   }
 }
 

@@ -8,7 +8,7 @@ export default function IndexPage() {
       </div>
 
       <div className="flicker relative z-10 flex flex-1 flex-col h-full w-full items-center justify-center gap-4 sm:gap-6 md:gap-10 overflow-hidden shadow-[0_7px_10px_0_#00000070_inset]">
-        <img alt="DANKSTAR" className="my-4 sm:my-6 md:my-8 w-1/2 max-w-xs sm:max-w-sm md:max-w-[400px] object-contain" src="https://raw.githubusercontent.com/YAZR007/superdope_website/main/RAINBOWLOGO-removebg-preview.png" />
+        <img alt="DANKSTAR" className="my-4 sm:my-6 md:my-8 w-3/4 max-w-lg sm:max-w-xl md:max-w-[600px] object-contain" src="https://raw.githubusercontent.com/YAZR007/superdope_website/main/1000040801-removebg-preview.png" />
         <div className="mb-3 sm:mb-4 md:mb-6 flex flex-col items-center gap-2 sm:gap-3">
           <div className="text-white text-lg sm:text-3xl md:text-5xl font-bold tracking-widest drop-shadow-lg flex items-center justify-center gap-2">
             <TransitionLink to="/menu" className="group transition-all duration-300 flex items-center justify-center gap-2">
